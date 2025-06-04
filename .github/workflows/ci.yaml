@@ -7,8 +7,10 @@ jobs:
     steps:
       - name: Hello
         run: echo 'Test CI process'
+
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -17,6 +19,12 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install -DskipTests
+
+      - name: Check java version
+        run: java -version
+
+      - name: Check environment variables
+        run: env
 
       - name: Run Tests
         run: mvn clean test -X
