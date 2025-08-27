@@ -30,15 +30,12 @@ jobs:
           mkdir -p $HOME/.allure
           curl -sSL https://github.com/allure-framework/allurectl/releases/download/2.15.4/allurectl_linux_amd64 -o $HOME/.allure/allurectl
           chmod +x $HOME/.allure/allurectl
-          echo "$HOME/.allure" >> $GITHUB_PATH
-          allure --version
-          
 
       - name: Build & Test
         run: mvn clean test
 
       - name: Generate Allure Report
-        run: allurectl generate allure-results --clean -o target/allure-report
+        run: $HOME/.allure/allurectl generate allure-results --clean -o target/allure-report
 
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
