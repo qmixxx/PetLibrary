@@ -25,10 +25,10 @@ jobs:
       - name: Check environment variables
         run: env
 
-      - name: Install Allure CLI
-        uses: allure-framework/setup-allurectl@v1
-        with:
-          allurectl-version: '2.15.4'
+      - name: Install Allure
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y allure
 
       - name: Build & Test
         run: mvn clean test
