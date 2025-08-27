@@ -25,8 +25,23 @@ jobs:
       - name: Check environment variables
         run: env
 
+      - name: Install Allure CLI
+        uses: allure-framework/allure-action@v2
+
       - name: Build & Test
-        run: mvn clean verify
+        run: mvn clean test
+
+      - name: Generate Allure Reports
+        run: allure generate allure-results --clean -o target/allure-report
+
+      - name: Upload Allure reports
+        uses: actions/upload-artifacts@v3
+        with:
+          name: allure-reports
+          path: target/allure-report
+          
+          
+          
 
 
 

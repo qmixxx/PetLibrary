@@ -1,6 +1,7 @@
 # PetLibrary
 
 ![CI](https://github.com/qmixxx/PetLibrary/actions/workflows/ci.yml/badge.svg)
+![CI PR](https://github.com/qmixxx/PetLibrary/actions/workflows/ci.yml/badge.svg?branch=feature-branch)
 
 ## Description
 Creating a system for a library
