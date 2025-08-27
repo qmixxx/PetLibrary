@@ -26,7 +26,9 @@ jobs:
         run: env
 
       - name: Install Allure CLI
-        uses: actions/setup-allure@v2
+        uses: allure-framework/setup-allurectl@v1
+        with:
+          allurectl-version: '2.15.4'
 
       - name: Build & Test
         run: mvn clean test
@@ -35,10 +37,10 @@ jobs:
         run: allure generate allure-results --clean -o target/allure-report
 
       - name: Upload Allure Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: target/allure-report
+          path: target/allure-report/**
           
 
 
