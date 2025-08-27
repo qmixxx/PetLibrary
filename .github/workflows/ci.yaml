@@ -31,7 +31,7 @@ jobs:
           curl -sSL https://github.com/allure-framework/allurectl/releases/download/2.15.4/allurectl_linux_amd64 -o $HOME/.allure/allurectl
           chmod +x $HOME/.allure/allurectl
           echo "$HOME/.allure" >> $GITHUB_PATH
-          allurectl --version
+          allure --version
           
 
       - name: Build & Test
