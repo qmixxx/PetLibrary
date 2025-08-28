@@ -1,0 +1,50 @@
+name: Test CI
+
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache Maven Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Check environment variables
+        run: env
+
+      - name: Install Allure CLI
+        run: |
+          mkdir -p $HOME/.allure
+          curl -sSL https://github.com/allure-framework/allurectl/releases/download/2.15.4/allurectl_linux_amd64 -o $HOME/.allure/allurectl
+          chmod +x $HOME/.allure/allurectl
+
+      - name: Build & Test
+        run: |
+          mvn clean test
+          pwd
+          tree
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          allure_results: allure-results
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/**
