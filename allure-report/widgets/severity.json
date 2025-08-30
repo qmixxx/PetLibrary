@@ -1,0 +1,1 @@
+[{"uid":"d8efb2719dfcfe9d","name":"TestAllureReportAttachments()","time":{"start":1757160726210,"stop":1757160726221,"duration":11},"status":"passed","severity":"normal"},{"uid":"c2a81006e54377b0","name":"testIfAllureIntegrationWorksSuccessfully()","time":{"start":1757160720570,"stop":1757160720668,"duration":98},"status":"passed","severity":"critical"}]
