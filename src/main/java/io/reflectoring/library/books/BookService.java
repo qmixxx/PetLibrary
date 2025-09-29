@@ -1,43 +1,41 @@
 package io.reflectoring.library.books;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
-    private final BorrowedRepository borrowedRepository;
 
-    @Autowired
-    public BookService(BookRepository bookRepository, BorrowedRepository borrowedRepository) {
-        this.bookRepository = bookRepository;
-        this.borrowedRepository = borrowedRepository;
+    public List<BookDto> findAll() {
+        return bookRepository.findAll()
+                .stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
     }
 
-    public List<Book> getBooks() {
-        return bookRepository.findAll();
+    public BookDto create(BookDto bookDto) {
+        Book book = new Book();
+        book.setIsbn(bookDto.getIsbn());
+        book.setName(bookDto.getName());
+        book.setAuthor(bookDto.getAuthor());
+        book.setLocation(bookDto.getLocation());
+
+        book = bookRepository.save(book);
+        return mapToDto(book);
     }
 
-    public void addNewBook(Book book) {
-        Optional<Book> bookOptional = bookRepository
-                .findBookByIsbn(book.getIsbn());
-        if (bookOptional.isPresent()) {
-            throw new IllegalStateException("ISDN is already Exist");
-        }
-        bookRepository.save(book);
-        System.out.println(book);
-    }
-
-    public void deleteBook(String isbn) {
-        Optional<Book> bookOptional = bookRepository.findBookByIsbn(isbn);
-
-        if (bookOptional.isEmpty()) {
-            throw new IllegalStateException("the book with ISBN: " + isbn + " doesn't exists");
-        }
-        bookRepository.delete(bookOptional.get());
+    private BookDto mapToDto(Book book) {
+        return new BookDto(
+                book.getIsbn(),
+                book.getName(),
+                book.getAuthor(),
+                book.getLocation()
+        );
     }
 }
