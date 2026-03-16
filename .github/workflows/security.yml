@@ -48,5 +48,5 @@ jobs:
         with:
           dockerfile: docker/Dockerfile
 
-      - name: Build Docker image
-        run: docker build -t petlibrary:ci -f docker/Dockerfile .
+#      - name: Build Docker image
+#        run: docker build -t petlibrary:ci -f docker/Dockerfile .
