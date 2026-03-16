@@ -24,3 +24,47 @@ While most of the inheritance is fine, it also inherits unwanted elements like `
 To prevent this, the project POM contains empty overrides for these elements.
 If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
 
+
+src/test/java/io/reflectoring/library
+│
+├── books
+│   ├── BookControllerTest.java     
+│   │   ├─ Тестирует REST API эндпоинты BookController
+│   │   │   - GET /books
+│   │   │   - GET /books/isbn/{isbn}
+│   │   │   - POST /books
+│   │   │   - Проверка JSON-мэппинга
+│   │   └─ Использует MockMvc + мок сервисов
+│   │
+│   ├── BookServiceTest.java        
+│   │   ├─ Тестирует логику BookService
+│   │   │   - findAll() → возвращает список DTO
+│   │   │   - findBookByIsbn() → найден / не найден
+│   │   │   - create(BookDto) → проверка создания
+│   │   └─ Мокает BookRepository через Mockito
+│   │
+│   ├── BorrowServiceTest.java      
+│   │   ├─ Тестирует логику BorrowService
+│   │   │   - borrowBook()
+│   │   │   - returnBook()
+│   │   │   - prolongBook()
+│   │   └─ Мокает BookService и/или репозитории
+│   │
+│   └── repository
+│       └── BookRepositoryTest.java
+│           ├─ Тестирует взаимодействие с БД
+│           │   - findByIsbn()
+│           │   - save()
+│           │   - delete()
+│           └─ Использует @DataJpaTest + H2 или тестовую БД
+│
+├── models
+│   └── TestSecrets.java            
+│       └─ Вспомогательные модели для тестов, фикстуры
+│
+└── utils
+├── AllureUtils.java
+│   └─ Методы для формирования отчетов Allure
+│
+└── TestUtils.java              
+└─ Генерация фейковых Book/Dto/ Borrow объектов

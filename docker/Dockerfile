@@ -4,15 +4,13 @@ FROM maven:3.9.6-eclipse-temurin-17 AS build
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем только pom.xml для кэширования зависимостей
+# hadolint ignore=DL3059
 COPY pom.xml .
-
-# Копируем исходники
-COPY src ./src
-
-# Загружаем зависимости заранее
+# Качаем зависимости — это закэшируется
 RUN mvn dependency:go-offline
-# Сборка jar
+
+COPY src ./src
+# Собираем jar
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run

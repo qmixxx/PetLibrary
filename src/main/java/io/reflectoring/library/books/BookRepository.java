@@ -16,4 +16,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("select b from Book b where b.isbn = :isbn")
     Optional<Book> findByIsbnForUpdate(@Param("isbn") String isbn);
 
+    BookDto deleteByIsbn(String isbn);
+
 }

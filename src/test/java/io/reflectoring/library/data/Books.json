@@ -1,0 +1,32 @@
+[
+  {
+    "isbn": "12324",
+    "name": "Britt Marii",
+    "author": "Backman",
+    "location": "R2-P101"
+  },
+  {
+    "isbn": "12325",
+    "name": "UweB",
+    "author": "Backman",
+    "location": "R2-P102"
+  },
+  {
+    "isbn": "111",
+    "name": "Test",
+    "author": "Me",
+    "location": "Shelf1"
+  },
+  {
+    "isbn": "112",
+    "name": "Test_N",
+    "author": "MYT",
+    "location": "Shelf2"
+  },
+  {
+    "isbn": "113",
+    "name": "Test_T",
+    "author": "MYT",
+    "location": "Shelf3"
+  }
+]
