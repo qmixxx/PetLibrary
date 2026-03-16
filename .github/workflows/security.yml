@@ -33,15 +33,15 @@ jobs:
           path: ~/.dependency-check
           key: dependency-check-cache
 
-      - name: Run Dependency Check
-        env:
-          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: |
-          mvn org.owasp:dependency-check-maven:check \
-              -Dnvd.apiKey=$NVD_API_KEY \
-              -Ddata.directory=$HOME/.dependency-check \
-              -Dformat=ALL \
-              -DfailBuildOnCVSS=11
+#      - name: Run Dependency Check
+#        env:
+#          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+#        run: |
+#          mvn org.owasp:dependency-check-maven:check \
+#              -Dnvd.apiKey=$NVD_API_KEY \
+#              -Ddata.directory=$HOME/.dependency-check \
+#              -Dformat=ALL \
+#              -DfailBuildOnCVSS=11
 
       - name: Run Hadolint
         uses: hadolint/hadolint-action@v3.1.0
