@@ -49,6 +49,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 The application will start on http://localhost:8080.
+curl -v -GET http://localhost:8080/actuator/health
 
 ### Running Tests
 

@@ -1,4 +1,4 @@
-package io.reflectoring.library.books.service;
+package io.reflectoring.library.books;
 
 public class BorrowServiceTest {
 }
