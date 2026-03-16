@@ -9,7 +9,7 @@ echo "🕵️ Starting secret scanner..."
 # -n: показать номер строки
 # -E: использовать расширенные регулярные выражения
 # -i: игнорировать регистр
-RESULT = $(grep -rniE "(password|api[_-]?key|secret|token|credential)" "$SEARCH_PATH" \
+RESULT=$(grep -rniE "(password|api[_-]?key|secret|token|credential)" "$SEARCH_PATH" \
   --include=\*.{env,conf,yaml,yml,json} \
   --exclude-dir={.git,node_modules,.github,target} |
 grep -v '\${{' |
