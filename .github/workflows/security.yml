@@ -15,8 +15,8 @@ jobs:
 
       - name: Run secret scanner
         run: |
-          chmod +x secret_scan.sh
-          ./secret_scan.sh .
+          chmod +x secrets_scan.sh
+          ./secrets_scan.sh .
 
   security-checks:
     runs-on: ubuntu-latest
