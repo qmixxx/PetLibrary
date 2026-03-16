@@ -6,6 +6,18 @@ on:
       - '**'
 
 jobs:
+  secret-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run secret scanner
+        run: |
+          chmod +x secret_scan.sh
+          ./secret_scan.sh .
+
   security-checks:
     runs-on: ubuntu-latest
     steps:
